@@ -1,0 +1,4 @@
+[tools]
+"pipx:opensafely" = "latest"
+python = "latest"
+uv = "latest"

@@ -1,0 +1,21 @@
+version: '5.0'
+
+actions:
+  generate_dataset:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset.csv.gz
+  generate_report_py:
+    run: python:v2 python analysis/report.py
+    needs: [generate_dataset]
+    outputs:
+      moderately_sensitive:
+        chart: output/report_py.png
+  generate_report_R:
+    run: r:v2 analysis/report.R
+    needs: [generate_dataset]
+    outputs:
+      moderately_sensitive:
+        chart: output/report_R.png
+
